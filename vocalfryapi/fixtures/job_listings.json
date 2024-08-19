@@ -1,0 +1,26 @@
+[
+  {
+      "model": "vocalfryapi.joblisting",
+      "pk": 1,
+      "fields": {
+          "lister": 3,
+          "title": "TOP SECRET SQUARE ENIX GAME - english dub",
+          "description": "We are seeking a talented voice actor to bring to life a central character in our upcoming action-adventure video game. The character is a mysterious, battle-hardened warrior with a complex personality and a dark past.",
+          "location": "Preferably LA, California, but remote from an at-home studio would be considered",
+          "listing_date": "2024-09-20",
+          "company_website": ""
+      }
+  },
+  {
+      "model": "vocalfryapi.joblisting",
+      "pk": 2,
+      "fields": {
+          "lister": 4,
+          "title": "UNDISCLOSED DISNEY PROJECT",
+          "description": "Disney is searching for a talented voice actor to join a top-secret animated feature. The character is a whimsical and adventurous protagonist, full of charm and youthful energy. This project is expected to be a major release, and the chosen voice will play a pivotal role in bringing the story to life.",
+          "location": "LA, California",
+          "listing_date": "2024-09-17",
+          "company_website": ""
+      }
+  }
+]

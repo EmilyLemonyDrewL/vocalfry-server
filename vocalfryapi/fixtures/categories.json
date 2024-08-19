@@ -1,0 +1,72 @@
+[
+  {
+      "model": "vocalfryapi.category",
+      "pk": 1,
+      "fields": {
+          "label": "Commercial/Promo/Trailer"
+      }
+  },
+  {
+      "model": "vocalfryapi.category",
+      "pk": 2,
+      "fields": {
+          "label": "Animation/Cartoons"
+      }
+  },
+  {
+      "model": "vocalfryapi.category",
+      "pk": 3,
+      "fields": {
+          "label": "Mocap (Motion Capture)"
+      }
+  },
+  {
+      "model": "vocalfryapi.category",
+      "pk": 4,
+      "fields": {
+          "label": "Video Game"
+      }
+  },
+  {
+      "model": "vocalfryapi.category",
+      "pk": 5,
+      "fields": {
+          "label": "Audio Book/Narration"
+      }
+  },
+  {
+      "model": "vocalfryapi.category",
+      "pk": 6,
+      "fields": {
+          "label": "Singing"
+      }
+  },
+  {
+      "model": "vocalfryapi.category",
+      "pk": 7,
+      "fields": {
+          "label": "Radio/Podcast"
+      }
+  },
+  {
+      "model": "vocalfryapi.category",
+      "pk": 8,
+      "fields": {
+          "label": "Impressions/Accents"
+      }
+  },
+  {
+      "model": "vocalfryapi.category",
+      "pk": 9,
+      "fields": {
+          "label": "test category"
+      }
+  },
+  {
+      "model": "vocalfryapi.category",
+      "pk": 10,
+      "fields": {
+          "label": "test category 2"
+      }
+  }
+]

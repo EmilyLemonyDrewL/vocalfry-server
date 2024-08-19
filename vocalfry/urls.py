@@ -15,7 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+from rest_framework import routers
+from vocalfryapi.views import UserView, ProfileView, CategoryView, ProfileCategoryView, JobListingView
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'users', UserView, 'user')
+router.register(r'profiles', ProfileView, 'profile')
+router.register(r'categories', CategoryView, 'category')
+router.register(r'profilecategories', ProfileCategoryView, 'profilecategory')
+router.register(r'joblistings', JobListingView, 'joblisting')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(router.urls)),
 ]

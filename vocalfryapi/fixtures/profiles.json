@@ -1,0 +1,34 @@
+[
+  {
+      "model": "vocalfryapi.profile",
+      "pk": 1,
+      "fields": {
+          "user": 1,
+          "name_seen_on_profile": "Stolas Andr",
+          "image_url": "https://plus.unsplash.com/premium_photo-1710911198769-3212be50550b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "bio": "Stolas Andr is a versatile voice actor with over seven years of experience. His warm, soothing voice is perfect for audiobooks, commercials, and animations, bringing characters and stories to life.",
+          "location": "NYC, New York",
+          "above_18": 1,
+          "work_remote": 1,
+          "demo_reel_url": "",
+          "email": "stolasthevoice@gmail.com",
+          "phone": "123-4567"
+      }
+  },
+  {
+      "model": "vocalfryapi.profile",
+      "pk": 2,
+      "fields": {
+          "user": 2,
+          "name_seen_on_profile": "Lola V.",
+          "image_url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "bio": "Lola, with 10+ years in voice acting, offers a deep, commanding voice ideal for trailers, video games, and corporate narrations. Her dynamic range suits both serious and vibrant character roles.",
+          "location": "LA, California",
+          "above_18": 1,
+          "work_remote": 0,
+          "demo_reel_url": "",
+          "email": "caligirlvalentine@gmail.com",
+          "phone": "789-1234"
+      }
+  }
+]

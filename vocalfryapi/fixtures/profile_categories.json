@@ -1,0 +1,34 @@
+[
+  {
+      "model": "vocalfryapi.profilecategory",
+      "pk": 1,
+      "fields": {
+          "profile": 1,
+          "category": 8
+      }
+  },
+  {
+      "model": "vocalfryapi.profilecategory",
+      "pk": 2,
+      "fields": {
+          "profile": 1,
+          "category": 4
+      }
+  },
+  {
+      "model": "vocalfryapi.profilecategory",
+      "pk": 3,
+      "fields": {
+          "profile": 2,
+          "category": 3
+      }
+  },
+  {
+      "model": "vocalfryapi.profilecategory",
+      "pk": 4,
+      "fields": {
+          "profile": 2,
+          "category": 5
+      }
+  }
+]

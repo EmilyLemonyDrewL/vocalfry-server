@@ -1,0 +1,42 @@
+[
+  {
+      "model": "vocalfryapi.user",
+      "pk": 1,
+      "fields": {
+          "uid": "abcdefg",
+          "first_name": "Stolas",
+          "last_name": "Andromeda",
+          "user_type": 0
+      }
+  },
+  {
+      "model": "vocalfryapi.user",
+      "pk": 2,
+      "fields": {
+          "uid": "hijklm",
+          "first_name": "Lola",
+          "last_name": "Valentine",
+          "user_type": 0
+      }
+  },
+  {
+      "model": "vocalfryapi.user",
+      "pk": 3,
+      "fields": {
+          "uid": "nopqrs",
+          "first_name": "Lydia",
+          "last_name": "Banks",
+          "user_type": 1
+      }
+  },
+  {
+      "model": "vocalfryapi.user",
+      "pk": 4,
+      "fields": {
+          "uid": "tuvwxy",
+          "first_name": "Helen",
+          "last_name": "Anderson",
+          "user_type": 1
+      }
+  }
+]

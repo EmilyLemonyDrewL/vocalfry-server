@@ -50,6 +50,11 @@ class UserView(ViewSet):
         except User.DoesNotExist:
             return Response({'messag': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
 
+    def destroy (self, request, pk):
+        user = User.objects.get(pk=pk)
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 # for registration on the front end
 @api_view(['POST'])
 def check_user(request):

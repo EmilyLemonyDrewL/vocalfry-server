@@ -52,3 +52,8 @@ class JobListingView(ViewSet):
         job_listing.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+    def destroy (self, request, pk):
+        job_listing = JobListing.objects.get(pk=pk)
+        job_listing.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

@@ -36,4 +36,8 @@ class ProfileCategoryView(ViewSet):
 
         serializer = ProfileCategorySerializer(profile_category)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+
+    def destroy (self, request, pk):
+        profile_category = ProfileCategory.objects.get(pk=pk)
+        profile_category.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

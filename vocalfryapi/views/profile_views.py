@@ -69,3 +69,8 @@ class ProfileView(ViewSet):
         profile.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+    
+    def destroy (self, request, pk):
+        profile = Profile.objects.get(pk=pk)
+        profile.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

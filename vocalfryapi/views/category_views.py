@@ -38,3 +38,9 @@ class CategoryView(ViewSet):
         category.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+    def destroy (self, request, pk):
+        category = Category.objects.get(pk=pk)
+        category.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+        

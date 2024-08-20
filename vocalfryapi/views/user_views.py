@@ -1,6 +1,7 @@
 # from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from rest_framework import serializers, status
 from vocalfryapi.models import User
 
@@ -24,3 +25,64 @@ class UserView(ViewSet):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
+
+    def create(self, request):
+        user = User.objects.create(
+            uid=request.data['uid'],
+            first_name=request.data['first_name'],
+            last_name=request.data['last_name'],
+            user_type=request.data['user_type']
+        )
+        serializer = UserSerializer(user)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def update(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+            user.uid = request.data['uid']
+            user.first_name = request.data['first_name']
+            user.last_name = request.data['last_name']
+            user.user_type = request.data['user_type']
+            user.save()
+
+            serializer = UserSerializer(user)
+            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+        except User.DoesNotExist:
+            return Response({'messag': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+# for registration on the front end
+@api_view(['POST'])
+def check_user(request):
+    uid = request.data['uid']
+    user = User.objects.filter(uid=uid).first()
+
+    if user is not None:
+        data = {
+            'id': user.id,
+            'uid': user.uid,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'user_type': user.user_type
+        }
+        return Response(data)
+    else:
+        data = {'valid': False}
+        return Response(data)
+
+@api_view(['POST'])
+def register_user(request):
+    user = User.objects.create(
+        uid=request.data['uid'],
+        first_name=request.data['first_name'],
+        last_name=request.data['last_name'],
+        user_type=request.data['user_type']
+    )
+
+    data = {
+        'id': user.id,
+        'uid': user.uid,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'user_type': user.user_type
+    }
+    return Response(data)

@@ -2,7 +2,7 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from vocalfryapi.models import ProfileCategory
+from vocalfryapi.models import ProfileCategory, Profile, Category
 
 class ProfileCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,3 +24,16 @@ class ProfileCategoryView(ViewSet):
         profilecategories = ProfileCategory.objects.all()
         serializer = ProfileCategorySerializer(profilecategories, many=True)
         return Response(serializer.data)
+
+    def create(self, request):
+        profile = Profile.objects.get(pk=request.data['profile'])
+        category = Category.objects.get(pk=request.data['category'])
+
+        profile_category = ProfileCategory.objects.create(
+            profile=profile,
+            category=category,
+        )
+
+        serializer = ProfileCategorySerializer(profile_category)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    

@@ -1,11 +1,11 @@
+from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
-from rest_framework.test import APITestCase
 from vocalfryapi.models import User
 
-class UserTests(APITestCase):
+class TestUsers(TestCase):
 
-    def new_user_for_test(self):
+    def setUp(self):
         self.user = User.objects.create(
             uid="12345",
             first_name="Test",
@@ -14,44 +14,44 @@ class UserTests(APITestCase):
         )
         self.url = reverse('user-list')
 
-    def retrieve_user_test(self):
+    def test_retrieve_user(self):
         url = reverse('user-detail', args=[self.user.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['first_name'], self.user.frist_name)
+        self.assertEqual(response.data['first_name'], self.user.first_name)
 
-    def list_users_test(self):
+    def test_list_users(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]['first_name'], self.user.first_name)
 
-    def create_user_test(self):
+    def test_create_user(self):
         data = {
           'uid': '54321',
           'first_name': 'Mr. Test',
           'last_name': 'Tested',
-          'user-type': 1
+          'user_type': 1
         }
         response = self.client.post(self.url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 2)
         self.assertEqual(response.data['first_name'], 'Mr. Test')
 
-    def update_user_test(self):
+    def test_update_user(self):
         url = reverse('user-detail', args=[self.user.id])
         data = {
           'uid': '12345',
           'first_name': 'Testing',
           'last_name': 'Testing',
-          'user-type': 0
+          'user_type': 1
         }
-        response = self.client.put(url, data, format='json')
+        response = self.client.put(url, data, content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.user.refresh_from_db()
         self.assertEqual(self.user.first_name, 'Testing')
 
-    def delete_user_test(self):
+    def test_delete_user(self):
         url = reverse('user-detail', args=[self.user.id])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

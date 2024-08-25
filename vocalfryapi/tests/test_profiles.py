@@ -37,7 +37,7 @@ class TestProfiles(TestCase):
         self.assertEqual(response.data['name_seen_on_profile'], self.profile.name_seen_on_profile)
         self.assertEqual(response.data['user']['uid'], self.user.uid)
 
-    def test_list_profile(self):
+    def test_list_profiles(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)

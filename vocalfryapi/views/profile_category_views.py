@@ -1,4 +1,3 @@
-# from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
@@ -7,7 +6,7 @@ from vocalfryapi.models import ProfileCategory, Profile, Category
 class ProfileCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfileCategory
-        fields = ('id', 'profile_id', 'category_id', 'profile', 'category')
+        fields = ('id', 'profile_id', 'category_id', 'category')
         depth = 1
 
 class ProfileCategoryView(ViewSet):

@@ -1,14 +1,17 @@
-# from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import serializers, status
 from vocalfryapi.models import User
+from .profile_views import ProfileSerializer
+from .job_listing_views import JobListingSerializer
 
 class UserSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer(read_only=True)
+    job_listings = JobListingSerializer(many=True, read_only=True, source='joblisting_set')
     class Meta:
         model = User
-        fields = ('id', 'uid', 'first_name', 'last_name', 'user_type')
+        fields = ('id', 'uid', 'first_name', 'last_name', 'user_type', 'profile', 'job_listings')
         depth = 1
 
 class UserView(ViewSet):
@@ -55,7 +58,6 @@ class UserView(ViewSet):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# for registration on the front end
 @api_view(['POST'])
 def check_user(request):
     uid = request.data['uid']

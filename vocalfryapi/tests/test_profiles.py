@@ -9,7 +9,6 @@ class TestProfiles(TestCase):
         
         self.category = Category.objects.create(id=1, label="Test Category")
 
-        # create User for profile test
         self.user = User.objects.create(uid="12345", first_name="test", last_name="user", user_type=0)
 
         self.profile = Profile.objects.create(
@@ -25,7 +24,6 @@ class TestProfiles(TestCase):
             phone="615-111-1111"
         )
 
-        # create profilecategory for profile test
         self.category = ProfileCategory.objects.create(category=self.category, profile=self.profile)
 
         self.url = reverse('profile-list')

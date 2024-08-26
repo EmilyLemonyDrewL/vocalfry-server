@@ -1,4 +1,3 @@
-# from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
@@ -6,10 +5,11 @@ from vocalfryapi.models import Profile, ProfileCategory, User
 from .profile_category_views import ProfileCategorySerializer
 
 class ProfileSerializer(serializers.ModelSerializer):
+    profile_categories = ProfileCategorySerializer(many=True, read_only=True, source='profilecategory_set')
     profile_category = ProfileCategorySerializer(read_only=True)
     class Meta:
         model = Profile
-        fields = ('id', 'user_id', 'name_seen_on_profile', 'image_url', 'bio', 'location', 'above_18', 'work_remote', 'demo_reel_url', 'email', 'phone', 'profile_category', 'user')
+        fields = ('id', 'user_id', 'name_seen_on_profile', 'image_url', 'bio', 'location', 'above_18', 'work_remote', 'demo_reel_url', 'email', 'phone', 'profile_category', 'user', 'profile_categories')
         depth = 1
 
 class ProfileView(ViewSet):

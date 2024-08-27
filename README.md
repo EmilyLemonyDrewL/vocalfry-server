@@ -24,5 +24,5 @@ https://github.com/EmilyLemonyDrewL/vocalfry-server/issues
 https://github.com/EmilyLemonyDrewL
 
 ## Loom Video
-<p>Coming soon...</p>
+https://www.loom.com/share/977735b23a9040ef890fc1070a6751f2?sid=0c2c74ec-f23b-419b-96d6-6574dd082e4b
 

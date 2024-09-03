@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from vocalfryapi.views import UserView, ProfileView, CategoryView, ProfileCategoryView, JobListingView
+from vocalfryapi.views import UserView, ProfileView, CategoryView, ProfileCategoryView, JobListingView, check_user, register_user
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'user')
@@ -29,4 +29,6 @@ router.register(r'joblistings', JobListingView, 'joblisting')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
+    path('register', register_user),
+    path('checkuser', check_user),
 ]

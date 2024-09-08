@@ -20,7 +20,11 @@ class JobListingView(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
-        job_listings = JobListing.objects.all()
+        uid = request.query_params.get('uid', None)
+        if uid:
+            job_listings = JobListing.objects.filter(lister__uid=uid)
+        else:
+            job_listings = JobListing.objects.all()
         serializer = JobListingSerializer(job_listings, many=True)
         return Response(serializer.data)
 

@@ -23,9 +23,16 @@ class ProfileView(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
+        uid = request.query_params.get('uid', None)
         category_id = request.query_params.get('category_id', None)
-
-        if category_id is not None:
+        
+        if uid:
+            try:
+                user = User.objects.get(uid=uid)
+                profiles = Profile.objects.filter(user=user)
+            except User.DoesNotExist:
+                return Response({'message': 'User no found'}, status=status.HTTP_404_NOT_FOUND)  
+        elif category_id is not None:
             profile_categories = ProfileCategory.objects.filter(category_id=category_id)
             profiles = Profile.objects.filter(id__in=profile_categories.values_list('profile_id', flat=True))
         else:

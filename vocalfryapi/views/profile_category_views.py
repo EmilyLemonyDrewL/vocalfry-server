@@ -20,7 +20,11 @@ class ProfileCategoryView(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
-        profilecategories = ProfileCategory.objects.all()
+        profile_id = request.query_params.get('profileId')
+        if profile_id:
+            profilecategories = ProfileCategory.objects.filter(profile_id=profile_id)
+        else:
+          profilecategories = ProfileCategory.objects.all()
         serializer = ProfileCategorySerializer(profilecategories, many=True)
         return Response(serializer.data)
 
@@ -37,6 +41,15 @@ class ProfileCategoryView(ViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def destroy (self, request, pk):
-        profile_category = ProfileCategory.objects.get(pk=pk)
-        profile_category.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        try:
+          profile_category = ProfileCategory.objects.get(pk=pk)
+          profile_category.delete()
+          return Response(status=status.HTTP_204_NO_CONTENT)
+        except ProfileCategory.DoesNotExist:
+          return Response({'message': 'ProfileCategory not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as ex:
+        # Log the exception if needed
+          print(f"An error occurred while deleting the category: {str(ex)}")
+          return Response({'message': 'An error occurred while deleting the category.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        
